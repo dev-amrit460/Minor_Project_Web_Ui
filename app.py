@@ -37,7 +37,7 @@ model_incv3 = kr.applications.InceptionV3(
     classifier_activation="softmax",
 )
 
-caption="No caption, Kindly refresh!"
+
 
 model_incv3_v1 = Model(model_incv3.input, model_incv3.layers[-2].output)
 
@@ -88,7 +88,7 @@ def greedySearch(photo):
     final = ' '.join(final)
     return final
 
-def beam_search_predictions(image, beam_index = 3):
+def beam_search_predictions(image, beam_index = 2):
     start = [wordtoix["startseq"]]
     start_word = [[start, 0.0]]
     while len(start_word[0][0]) < max_length:
@@ -125,9 +125,9 @@ def beam_search_predictions(image, beam_index = 3):
     return final_caption
 
 app = Flask(__name__)
+caption="No caption, Kindly refresh!"
 camera = None
 flag = True
-
 
 def generate_frames(camera):
     global flag
@@ -182,7 +182,7 @@ def videon():
 @app.route('/capture')
 
 def capture():
-    cam = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture(cv2.CAP_DSHOW)
     result, img = cam.read()
     res = cv2.resize(img, dsize=(299, 299), interpolation=cv2.INTER_CUBIC)
     if result:
@@ -193,14 +193,16 @@ def capture():
         fea_vec = np.reshape(fea_vec, fea_vec.shape[1])
         encoded_img1 = fea_vec.reshape(1, 2048)
         caption= beam_search_predictions(encoded_img1)
+
         import pyttsx3
         engine = pyttsx3.init()
         engine.say(caption)
         engine.runAndWait()
         return render_template('index.html',string_variable=caption)
+    
     return render_template('index.html',string_variable="Capture Failed")
 
 
 
 if __name__ == "__main__":
-    app.run(debug=False,host='0.0.0.0')
+    app.run(debug=True)
