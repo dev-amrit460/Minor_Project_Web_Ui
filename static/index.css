@@ -1,0 +1,26 @@
+.frame{
+    border: 1px solid black;
+    border-radius: 16px;
+    width: max-content;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.frame img{
+    object-fit: cover;
+}
+.frame1{
+    margin-top: 1rem;
+    /* border: 1px solid black; */
+    border-radius: 16px;
+    width: max-content;
+    max-width: 80vw;
+    height: 40px;
+    max-height: 100px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
