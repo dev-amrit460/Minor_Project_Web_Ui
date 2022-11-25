@@ -88,7 +88,7 @@ def greedySearch(photo):
     final = ' '.join(final)
     return final
 
-def beam_search_predictions(image, beam_index = 2):
+def beam_search_predictions(image, beam_index = 3):
     start = [wordtoix["startseq"]]
     start_word = [[start, 0.0]]
     while len(start_word[0][0]) < max_length:
