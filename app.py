@@ -125,7 +125,7 @@ def beam_search_predictions(image, beam_index = 3):
     return final_caption
 
 app = Flask(__name__)
-camera = NULL
+camera = None
 flag = True
 
 
