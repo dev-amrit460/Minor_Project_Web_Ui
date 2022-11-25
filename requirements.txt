@@ -1,0 +1,9 @@
+Flask==2.2.2
+keras==2.10.0
+Keras_Preprocessing==1.1.2
+matplotlib==3.5.3
+numpy==1.21.6
+opencv_python==4.6.0.66
+Pillow==9.3.0
+pyttsx3==2.90
+tensorflow==2.10.0
