@@ -1,5 +1,4 @@
 from keras.models import load_model
-from asyncio.windows_events import NULL
 from flask import Flask, render_template, Response
 import cv2
 import numpy as np
@@ -29,6 +28,7 @@ from keras.applications.inception_v3 import preprocess_input
 from keras.models import Model
 #from tensorflow.python.keras.utils import to_categorical
 from tensorflow.python.keras.utils.np_utils import to_categorical
+
 import keras as kr
 model_incv3 = kr.applications.InceptionV3(
     include_top=True,
@@ -36,7 +36,9 @@ model_incv3 = kr.applications.InceptionV3(
     pooling='avg',
     classifier_activation="softmax",
 )
+
 caption="No caption, Kindly refresh!"
+
 model_incv3_v1 = Model(model_incv3.input, model_incv3.layers[-2].output)
 
 caption_model_v1 = load_model('incv3_lstm_model.h5')
